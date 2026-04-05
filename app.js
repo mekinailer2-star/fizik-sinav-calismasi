@@ -54,6 +54,7 @@ const QUIZ_QUESTIONS = [
 
 let currentTopic = 0;
 let topicsDone = JSON.parse(localStorage.getItem('topicsDone') || '{}');
+let stats = JSON.parse(localStorage.getItem('stats') || '{"flashTotal":0,"flashCorrect":0,"quizBest":null,"quizLast":null,"quizAttempts":0}');
 let flashIndex = 0;
 let flashDeck = [];
 let flashCorrect = 0;
@@ -64,6 +65,10 @@ let quizWrongCount = 0;
 let quizTimer = null;
 let quizSeconds = 0;
 let quizQuestions = [];
+
+function saveStats() {
+    localStorage.setItem('stats', JSON.stringify(stats));
+}
 
 function switchTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -154,6 +159,9 @@ function flipCard() {
 
 function flashResult(correct) {
     if (correct) flashCorrect++; else flashWrong++;
+    stats.flashTotal++;
+    if (correct) stats.flashCorrect++;
+    saveStats();
     updateFlashScore();
     flashIndex++;
     if (flashIndex >= flashDeck.length) {
@@ -231,6 +239,10 @@ function endQuiz() {
     document.getElementById('quizActive').classList.add('hidden');
     document.getElementById('quizResult').classList.remove('hidden');
     const score = Math.round((quizCorrectCount / quizQuestions.length) * 100);
+    stats.quizAttempts++;
+    stats.quizLast = score;
+    if (stats.quizBest === null || score > stats.quizBest) stats.quizBest = score;
+    saveStats();
     document.getElementById('quizScoreText').textContent = score + '%';
     document.getElementById('quizCorrectCount').textContent = quizCorrectCount;
     document.getElementById('quizWrongCount').textContent = quizWrongCount;
