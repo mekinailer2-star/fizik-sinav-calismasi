@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="description" content="Fizik sınavına hazırlık - Atom fiziği, parçacık fiziği, radyoaktivite konularında interaktif çalışma notları">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <title>Fizik Sinav Calismasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <div class="atom-icon">
+                        <svg viewBox="0 0 60 60" width="40" height="40">
+                            <ellipse cx="30" cy="30" rx="28" ry="10" fill="none" stroke="#00e5ff" stroke-width="1.5" transform="rotate(0,30,30)"/>
+                            <ellipse cx="30" cy="30" rx="28" ry="10" fill="none" stroke="#00e5ff" stroke-width="1.5" transform="rotate(60,30,30)"/>
+                            <ellipse cx="30" cy="30" rx="28" ry="10" fill="none" stroke="#00e5ff" stroke-width="1.5" transform="rotate(120,30,30)"/>
+                            <circle cx="30" cy="30" r="4" fill="#00e5ff"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1>Fizik Sinav Calismasi</h1>
+                        <p class="subtitle">Atom Fizigi & Radyoaktivite</p>
+                    </div>
+                </div>
+                <div class="progress-badge" id="progressBadge">
+                    <span id="progressPercent">0%</span>
+                    <div class="progress-ring">
+                        <svg viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#1a2744" stroke-width="3"/>
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#00e5ff" stroke-width="3" stroke-dasharray="100.5" stroke-dashoffset="100.5" id="progressCircle" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tab-nav" id="tabNav">
+            <button class="tab-btn active" data-tab="notlar" onclick="switchTab('notlar')">
+                <span class="tab-icon">&#128214;</span>
+                <span>Notlar</span>
+            </button>
+            <button class="tab-btn" data-tab="flashkart" onclick="switchTab('flashkart')">
+                <span class="tab-icon">&#127183;</span>
+                <span>Flash Kart</span>
+            </button>
+            <button class="tab-btn" data-tab="quiz" onclick="switchTab('quiz')">
+                <span class="tab-icon">&#9889;</span>
+                <span>Quiz</span>
+            </button>
+        </nav>
+
+        <main class="main-content">
+            <!-- NOTLAR TAB -->
+            <section id="tab-notlar" class="tab-content active">
+                <div class="topic-nav">
+                    <button class="topic-btn active" data-topic="0" onclick="switchTopic(0)">Uyarilma Yollari</button>
+                    <button class="topic-btn" data-topic="1" onclick="switchTopic(1)">Atom Alti Parcaciklar</button>
+                    <button class="topic-btn" data-topic="2" onclick="switchTopic(2)">Radyoaktif Bozunma</button>
+                    <button class="topic-btn" data-topic="3" onclick="switchTopic(3)">Fisyon & Fuzyon</button>
+                    <button class="topic-btn" data-topic="4" onclick="switchTopic(4)">Radyasyon Etkileri</button>
+                </div>
+
+                <!-- KONU 1: Atomun Uyarilma Yollari -->
+                <div class="topic-content active" id="topic-0">
+                    <div class="topic-header">
+                        <h2>Atomun Uyarilma Yollari</h2>
+                        <span class="badge">1 Soru</span>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Temel Kavram</h3>
+                        <p>Atom, temel halden (n=1) uyarilmis hale gectiginde <strong>enerji absorbe</strong> eder. Uyarilmis halden temel hale donerken ise <strong>foton yayar</strong>.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Uyarilma Yollari</h3>
+                        <div class="method-list">
+                            <div class="method-item">
+                                <div class="method-number">1</div>
+                                <div>
+                                    <strong>Foton Absorpsiyonu (Isik Sogurma)</strong>
+                                    <p>Atom, gelen fotonun enerjisi tam olarak iki enerji seviyesi arasindaki farka esitse fotonu absorbe eder ve uyarilir.</p>
+                                    <div class="formula">E<sub>foton</sub> = E<sub>ust</sub> - E<sub>alt</sub> = h.f</div>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-number">2</div>
+                                <div>
+                                    <strong>Elektron Carpmasi ile Uyarilma</strong>
+                                    <p>Hizlandirilan elektronlar atomlara carparak kinetik enerjilerinin bir kismini aktarir. Elektron, enerji seviyesi farkindan <em>fazla</em> enerjiye sahip olabilir (fark: kalan kinetik enerji).</p>
+                                </div>
+                            </div>
+                            <div class="method-item">
+                                <div class="method-number">3</div>
+                                <div>
+                                    <strong>Isi ile Uyarilma</strong>
+                                    <p>Yuksek sicaklikta atomlarin kinetik enerjisi artar, carpismalar sonucu elektronlar ust enerji seviyelerine cikar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Enerji Seviyeleri Diyagrami</h3>
+                        <div class="energy-diagram">
+                            <div class="energy-level" style="--level: 4;">
+                                <span class="level-label">n=4</span>
+                                <span class="level-energy">E<sub>4</sub></span>
+                            </div>
+                            <div class="energy-level" style="--level: 3;">
+                                <span class="level-label">n=3</span>
+                                <span class="level-energy">-1,38 eV</span>
+                            </div>
+                            <div class="energy-level" style="--level: 2;">
+                                <span class="level-label">n=2</span>
+                                <span class="level-energy">-3,40 eV</span>
+                            </div>
+                            <div class="energy-level ground" style="--level: 1;">
+                                <span class="level-label">n=1</span>
+                                <span class="level-energy">Temel Hal</span>
+                            </div>
+                            <div class="transition-arrow" style="--from: 4; --to: 1;">
+                                <span class="transition-label">Foton yayimi</span>
+                            </div>
+                        </div>
+                        <div class="example-box">
+                            <strong>Ornek Hesaplama:</strong>
+                            <p>Enerji seviyeleri: E<sub>4</sub>= 0 eV, E<sub>3</sub>= -1,38 eV, E<sub>2</sub>= -3,40 eV, E<sub>1</sub>= Temel hal</p>
+                            <p>Birst,b = 3 eV oldugu soylensin:</p>
+                            <ul>
+                                <li>3 eV foton gonderilirse &rarr; <strong>3 eV &le; 3 eV &#10003;</strong> (Absorbe edilir)</li>
+                                <li>1,62 eV foton &rarr; 3 eV - 1,38 eV = <strong>1,62 eV &#10003;</strong></li>
+                                <li>0,24 eV foton &rarr; 1,62 - 1,38 = <strong>0,24 eV &#10003;</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Fotoelektrik Olay</h3>
+                        <p>Isik (foton) bir metal yuzeyine duserse ve fotonun enerjisi metalin <strong>esik enerjisinden</strong> buyuk veya esitse, elektronlar koparilir.</p>
+                        <div class="formula">E<sub>foton</sub> = E<sub>esik</sub> + E<sub>kinetik</sub></div>
+                        <div class="key-points">
+                            <div class="key-point warn">
+                                <strong>Dikkat!</strong>
+                                <ul>
+                                    <li>4 eV enerjili elektron gonderirsek &rarr; <strong>elektron absorbe edilmez</strong> (foton degil!) &#10007;</li>
+                                    <li>8 eV enerjili foton &rarr; enerji seviyeleri arasindaki farkla eslesmiyor &rarr; &#10007;</li>
+                                    <li>6,67 eV enerjili foton &rarr; enerji seviyeleri uyumluysa &#10003;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ornek Soru</h3>
+                        <div class="question-card">
+                            <p class="question-text"><strong>S:</strong> Hidrojen atomunda elektron n=3 seviyesinden n=1 seviyesine gecerken yayilan fotonun enerjisi kac eV'dir? (E<sub>3</sub>= -1,51 eV, E<sub>1</sub>= -13,6 eV)</p>
+                            <button class="reveal-btn" onclick="toggleAnswer(this)">Cevabi Goster</button>
+                            <div class="answer hidden">
+                                <p><strong>C:</strong> E<sub>foton</sub> = E<sub>3</sub> - E<sub>1</sub> = -1,51 - (-13,6) = <strong>12,09 eV</strong></p>
+                                <p>Elektron alt seviyeye gecerken enerji farki kadar foton yayar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mark-done-btn" onclick="markTopicDone(0)">
+                        <span id="done-check-0"></span> Bu konuyu calistim
+                    </button>
+                </div>
+
+                <!-- KONU 2: Atom Alti Parcaciklar -->
+                <div class="topic-content" id="topic-1">
+                    <div class="topic-header">
+                        <h2>Atom Alti Parcaciklarin Ozellikleri</h2>
+                        <span class="badge">1 Soru</span>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Temel Siniflandirma</h3>
+                        <p>Madde, temel parcaciklardan olusur. Bu parcaciklar iki ana gruba ayrilir: <strong>Kuarklar</strong> (hadronlari olusturur) ve <strong>Leptonlar</strong> (dogada serbest bulunur).</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Kuarklar</h3>
+                        <div class="particle-grid">
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">u</span>
+                                <span class="particle-name">Up (Yukari)</span>
+                                <span class="particle-charge">+2/3</span>
+                            </div>
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">d</span>
+                                <span class="particle-name">Down (Asagi)</span>
+                                <span class="particle-charge">-1/3</span>
+                            </div>
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">c</span>
+                                <span class="particle-name">Charm (Cazibe)</span>
+                                <span class="particle-charge">+2/3</span>
+                            </div>
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">s</span>
+                                <span class="particle-name">Strange (Tuhaf)</span>
+                                <span class="particle-charge">-1/3</span>
+                            </div>
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">t</span>
+                                <span class="particle-name">Top (Tepe)</span>
+                                <span class="particle-charge">+2/3</span>
+                            </div>
+                            <div class="particle-card quark">
+                                <span class="particle-symbol">b</span>
+                                <span class="particle-name">Bottom (Dip)</span>
+                                <span class="particle-charge">-1/3</span>
+                            </div>
+                        </div>
+                        <div class="key-points">
+                            <div class="key-point">
+                                <p><strong>6 cesit</strong> kuark vardir. Kuarklar <strong>yuklu</strong> parcaciklardir ve <strong>renksel yuke</strong> sahiptir. Dogada <strong>serbest bulunamazlar</strong>, her zaman hadronlarin icinde bulunurlar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Hadronlar (Kuarklardan Olusur)</h3>
+                        <div class="comparison-table">
+                            <div class="comparison-col">
+                                <h4 class="col-title baryon">Baryonlar</h4>
+                                <ul>
+                                    <li><strong>3 kuarktan</strong> olusur</li>
+                                    <li>Hadron grubunun <strong>en agir</strong> parcaciklaridir</li>
+                                    <li>En bilinen ornekler: <strong>Proton (uud)</strong> ve <strong>Notron (udd)</strong></li>
+                                    <li>Proton: 2 up + 1 down</li>
+                                    <li>Notron: 1 up + 2 down</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-col">
+                                <h4 class="col-title mezon">Mezonlar</h4>
+                                <ul>
+                                    <li><strong>2 parcaciktan</strong> olusur</li>
+                                    <li><strong>1 kuark + 1 anti-kuark</strong></li>
+                                    <li>Baryonlardan daha <strong>hafiftir</strong></li>
+                                    <li>Kararsiz parcaciklardir</li>
+                                    <li>Ornek: Piyon, Kaon</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Leptonlar</h3>
+                        <p>Dogada <strong>serbest bulunurlar</strong>. Toplam <strong>6 lepton</strong> vardir:</p>
+                        <div class="particle-grid leptons">
+                            <div class="particle-card lepton">
+                                <span class="particle-symbol">e<sup>-</sup></span>
+                                <span class="particle-name">Elektron</span>
+                                <span class="particle-charge">-1</span>
+                            </div>
+                            <div class="particle-card lepton">
+                                <span class="particle-symbol">&mu;</span>
+                                <span class="particle-name">Muon</span>
+                                <span class="particle-charge">-1</span>
+                            </div>
+                            <div class="particle-card lepton">
+                                <span class="particle-symbol">&tau;</span>
+                                <span class="particle-name">Tau</span>
+                                <span class="particle-charge">-1</span>
+                            </div>
+                            <div class="particle-card lepton neutral">
+                                <span class="particle-symbol">&nu;<sub>e</sub></span>
+                                <span class="particle-name">Elektron Notrinosu</span>
+                                <span class="particle-charge">0</span>
+                            </div>
+                            <div class="particle-card lepton neutral">
+                                <span class="particle-symbol">&nu;<sub>&mu;</sub></span>
+                                <span class="particle-name">Muon Notrinosu</span>
+                                <span class="particle-charge">0</span>
+                            </div>
+                            <div class="particle-card lepton neutral">
+                                <span class="particle-symbol">&nu;<sub>&tau;</sub></span>
+                                <span class="particle-name">Tau Notrinosu</span>
+                                <span class="particle-charge">0</span>
+                            </div>
+                        </div>
+                        <div class="key-points">
+                            <div class="key-point">
+                                <p>3 tanesi <strong>yuklu</strong> (e, &mu;, &tau;), 3 tanesi <strong>notrinosu</strong> (&nu;) olan parcaciklardir. Notrinolarin kutlesi cok kucuk, yuku sifirdir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Bozon (Tasiyi Parcaciklar)</h3>
+                        <p>Kuvvetleri tasiyan parcaciklardir:</p>
+                        <ul class="bozon-list">
+                            <li><strong>Foton (&gamma;):</strong> Elektromanyetik kuvveti tasir</li>
+                            <li><strong>Gluon (g):</strong> Guclu nukleer kuvveti tasir (kuarklari bir arada tutar)</li>
+                            <li><strong>W ve Z bozonlari:</strong> Zayif nukleer kuvveti tasir</li>
+                            <li><strong>Graviton:</strong> Kutle cekimi kuvvetini tasir (teorik)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ozet Tablosu</h3>
+                        <div class="table-wrapper">
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Parcacik</th>
+                                        <th>Olusumu</th>
+                                        <th>Ornek</th>
+                                        <th>Ozellik</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Baryon</strong></td>
+                                        <td>3 kuark</td>
+                                        <td>Proton, Notron</td>
+                                        <td>En agir hadron</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mezon</strong></td>
+                                        <td>1 kuark + 1 anti-kuark</td>
+                                        <td>Piyon, Kaon</td>
+                                        <td>Kararsiz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lepton</strong></td>
+                                        <td>Temel (bolunmez)</td>
+                                        <td>Elektron, Notrino</td>
+                                        <td>Serbest bulunur</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ornek Soru</h3>
+                        <div class="question-card">
+                            <p class="question-text"><strong>S:</strong> Proton hangi kuarklardan olusur ve toplam yuku nedir?</p>
+                            <button class="reveal-btn" onclick="toggleAnswer(this)">Cevabi Goster</button>
+                            <div class="answer hidden">
+                                <p><strong>C:</strong> Proton = <strong>uud</strong> (2 up + 1 down)</p>
+                                <p>Yuk = (+2/3) + (+2/3) + (-1/3) = <strong>+1</strong></p>
+                                <p>Notron = <strong>udd</strong> (1 up + 2 down)</p>
+                                <p>Yuk = (+2/3) + (-1/3) + (-1/3) = <strong>0</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mark-done-btn" onclick="markTopicDone(1)">
+                        <span id="done-check-1"></span> Bu konuyu calistim
+                    </button>
+                </div>
+
+                <!-- KONU 3: Radyoaktif Bozunma -->
+                <div class="topic-content" id="topic-2">
+                    <div class="topic-header">
+                        <h2>Radyoaktif Bozunma</h2>
+                        <span class="badge">1 Soru</span>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Temel Kavram</h3>
+                        <p>Kararsiz atom cekirdekleri, kararli hale gelmek icin <strong>parcacik veya enerji yayarak</strong> bozunurlar. Bozunma sonucu <strong>kutle numarasi (A)</strong> ve <strong>atom numarasi (Z)</strong> degisebilir.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Bozunma Turleri</h3>
+                        <div class="decay-grid">
+                            <div class="decay-card alpha">
+                                <div class="decay-header">
+                                    <span class="decay-symbol">&alpha;</span>
+                                    <span class="decay-name">Alfa Bozunmasi</span>
+                                </div>
+                                <div class="decay-body">
+                                    <div class="decay-particle">
+                                        <sup>4</sup><sub>2</sub>He yayilir
+                                    </div>
+                                    <div class="decay-change">
+                                        <span class="change-item down">A &rarr; A-4</span>
+                                        <span class="change-item down">Z &rarr; Z-2</span>
+                                    </div>
+                                    <div class="decay-example">
+                                        <sup>235</sup><sub>92</sub>U &rarr; <sup>231</sup><sub>90</sub>Th + <sup>4</sup><sub>2</sub>He
+                                    </div>
+                                    <p class="decay-note">En agir bozunma urunu. Kagit ile durdurulabilir.</p>
+                                </div>
+                            </div>
+
+                            <div class="decay-card beta-minus">
+                                <div class="decay-header">
+                                    <span class="decay-symbol">&beta;<sup>-</sup></span>
+                                    <span class="decay-name">Beta Eksi Bozunmasi</span>
+                                </div>
+                                <div class="decay-body">
+                                    <div class="decay-particle">
+                                        <sup>0</sup><sub>-1</sub>e (elektron) yayilir
+                                    </div>
+                                    <div class="decay-change">
+                                        <span class="change-item same">A &rarr; A (degismez)</span>
+                                        <span class="change-item up">Z &rarr; Z+1</span>
+                                    </div>
+                                    <div class="decay-example">
+                                        n &rarr; p + e<sup>-</sup> + &nu;&#772;
+                                    </div>
+                                    <p class="decay-note">Notron, protona donusur. Kutle numarasi degismez.</p>
+                                </div>
+                            </div>
+
+                            <div class="decay-card beta-plus">
+                                <div class="decay-header">
+                                    <span class="decay-symbol">&beta;<sup>+</sup></span>
+                                    <span class="decay-name">Beta Arti (Pozitron)</span>
+                                </div>
+                                <div class="decay-body">
+                                    <div class="decay-particle">
+                                        <sup>0</sup><sub>+1</sub>e (pozitron) yayilir
+                                    </div>
+                                    <div class="decay-change">
+                                        <span class="change-item same">A &rarr; A (degismez)</span>
+                                        <span class="change-item down">Z &rarr; Z-1</span>
+                                    </div>
+                                    <div class="decay-example">
+                                        p &rarr; n + e<sup>+</sup> + &nu;
+                                    </div>
+                                    <p class="decay-note">Proton, notrona donusur. Kutle numarasi degismez.</p>
+                                </div>
+                            </div>
+
+                            <div class="decay-card gamma">
+                                <div class="decay-header">
+                                    <span class="decay-symbol">&gamma;</span>
+                                    <span class="decay-name">Gama Bozunmasi</span>
+                                </div>
+                                <div class="decay-body">
+                                    <div class="decay-particle">
+                                        Yuksek enerjili foton yayilir
+                                    </div>
+                                    <div class="decay-change">
+                                        <span class="change-item same">A &rarr; A (degismez)</span>
+                                        <span class="change-item same">Z &rarr; Z (degismez)</span>
+                                    </div>
+                                    <div class="decay-example">
+                                        X* &rarr; X + &gamma;
+                                    </div>
+                                    <p class="decay-note">Sadece enerji yayilir, cekirdek yapisi degismez. Kursunla durdurulur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ozet Tablosu</h3>
+                        <div class="table-wrapper">
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Bozunma</th>
+                                        <th>Yayilan</th>
+                                        <th>Kutle No (A)</th>
+                                        <th>Atom No (Z)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="row-alpha">
+                                        <td><strong>&alpha;</strong></td>
+                                        <td><sup>4</sup><sub>2</sub>He</td>
+                                        <td class="change-down">A - 4</td>
+                                        <td class="change-down">Z - 2</td>
+                                    </tr>
+                                    <tr class="row-beta">
+                                        <td><strong>&beta;<sup>-</sup></strong></td>
+                                        <td>Elektron</td>
+                                        <td class="change-same">A (ayni)</td>
+                                        <td class="change-up">Z + 1</td>
+                                    </tr>
+                                    <tr class="row-beta-plus">
+                                        <td><strong>&beta;<sup>+</sup></strong></td>
+                                        <td>Pozitron</td>
+                                        <td class="change-same">A (ayni)</td>
+                                        <td class="change-down">Z - 1</td>
+                                    </tr>
+                                    <tr class="row-gamma">
+                                        <td><strong>&gamma;</strong></td>
+                                        <td>Foton</td>
+                                        <td class="change-same">A (ayni)</td>
+                                        <td class="change-same">Z (ayni)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ornek Soru</h3>
+                        <div class="question-card">
+                            <p class="question-text"><strong>S:</strong> <sup>238</sup><sub>92</sub>U atomu sirasiyla 2 alfa ve 1 beta eksi bozunmasi gecirirse, olusacak atomun kutle numarasi ve atom numarasi kac olur?</p>
+                            <button class="reveal-btn" onclick="toggleAnswer(this)">Cevabi Goster</button>
+                            <div class="answer hidden">
+                                <p><strong>C:</strong></p>
+                                <p>Baslangic: A=238, Z=92</p>
+                                <p>1. alfa: A=238-4=234, Z=92-2=90</p>
+                                <p>2. alfa: A=234-4=230, Z=90-2=88</p>
+                                <p>3. beta-: A=230 (degismez), Z=88+1=89</p>
+                                <p>Sonuc: <strong>A=230, Z=89</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mark-done-btn" onclick="markTopicDone(2)">
+                        <span id="done-check-2"></span> Bu konuyu calistim
+                    </button>
+                </div>
+
+                <!-- KONU 4: Nukleer Fisyon ve Fuzyon -->
+                <div class="topic-content" id="topic-3">
+                    <div class="topic-header">
+                        <h2>Nukleer Fisyon ve Fuzyon</h2>
+                        <span class="badge">1 Soru</span>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Temel Kavram</h3>
+                        <p>Nukleer tepkimelerde <strong>kutle enerjiye</strong> donusur (E=mc&sup2;). Fisyon buyuk cekirdeklerin parcalanmasi, fuzyon kucuk cekirdeklerin birlesme sidir.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Nukleer Fisyon (Parcalanma)</h3>
+                        <div class="reaction-box fission">
+                            <div class="reaction-title">Tanimm</div>
+                            <p><strong>Kararsiz, buyuk kutle numarali</strong> bir atom cekirdegi, yuksek hizli bir parcacikla (genellikle notron) <strong>bombardiman</strong> edildiginde daha kucuk cekirdeklere <strong>parcalanir</strong>.</p>
+                            <div class="reaction-equation">
+                                <sup>235</sup><sub>92</sub>U + <sup>1</sup><sub>0</sub>n &rarr; <sup>140</sup><sub>56</sub>Ba + <sup>93</sup><sub>36</sub>Kr + 3(<sup>1</sup><sub>0</sub>n) + Enerji
+                            </div>
+                            <div class="reaction-features">
+                                <div class="feature">
+                                    <span class="feature-icon">&#9889;</span>
+                                    <span>Zincirleme reaksiyon olusabilir (serbest notronlar diger atomlari parcar)</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon">&#9762;</span>
+                                    <span>Nukleer reaktorler ve atom bombalari fisyon prensibine dayanir</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon">&#128300;</span>
+                                    <span>Kontrolledi: nukleer santral | Kontrolsuz: nukleer bomba</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Nukleer Fuzyon (Birlesme)</h3>
+                        <div class="reaction-box fusion">
+                            <div class="reaction-title">Tanim</div>
+                            <p><strong>Kararsiz, kucuk atom numarali, hafif</strong> elementlerin cekirdekleri <strong>cok yuksek sicaklik ve basinc</strong> altinda birlesirek daha agir element olusturur.</p>
+                            <div class="reaction-equation">
+                                <sup>2</sup><sub>1</sub>H + <sup>3</sup><sub>1</sub>H &rarr; <sup>4</sup><sub>2</sub>He + <sup>1</sup><sub>0</sub>n + Enerji
+                            </div>
+                            <div class="reaction-features">
+                                <div class="feature">
+                                    <span class="feature-icon">&#9728;&#65039;</span>
+                                    <span>Gunes ve yildizlarda enerji uretimi fuzyon ile gerceklesir</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon">&#128293;</span>
+                                    <span>Milyonlarca derece sicaklik gerektirir</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon">&#128161;</span>
+                                    <span>Fisyondan daha fazla enerji acigar, daha az radyoaktif atik uretir</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Fisyon vs Fuzyon Karsilastirmasi</h3>
+                        <div class="table-wrapper">
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ozellik</th>
+                                        <th>Fisyon</th>
+                                        <th>Fuzyon</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tanim</td>
+                                        <td>Buyuk cekirdek parcalanir</td>
+                                        <td>Kucuk cekirdekler birlesir</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yakit</td>
+                                        <td>Uranyum, Plutonyum</td>
+                                        <td>Hidrojen izotoplari (D, T)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kosul</td>
+                                        <td>Notron bombardimani</td>
+                                        <td>Cok yuksek sicaklik (&gt;10<sup>7</sup> K)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enerji</td>
+                                        <td>Cok buyuk</td>
+                                        <td>Daha da buyuk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Atik</td>
+                                        <td>Radyoaktif atik uretir</td>
+                                        <td>Daha az atik</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ornek</td>
+                                        <td>Nukleer santral</td>
+                                        <td>Gunes, yildizlar</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Kutle-Enerji Denkligi</h3>
+                        <div class="formula big">E = mc<sup>2</sup></div>
+                        <p>Nukleer tepkimelerde toplam kutle azalir (kutle acigi). Kaybolan kutle enerjiye donusur. Bu enerji, <strong>baglama enerjisi</strong> olarak adlandirilir.</p>
+                        <div class="key-points">
+                            <div class="key-point">
+                                <p><strong>y: gama (Kutle Numarasi = 0, Atom Numarasi = 0)</strong></p>
+                                <p>Gama isinlari nukleer tepkimelerde ek enerji olarak yayilir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ornek Soru</h3>
+                        <div class="question-card">
+                            <p class="question-text"><strong>S:</strong> Asagidaki nukleer tepkimede X cekirdeginin kutle numarasi ve atom numarasini bulunuz:<br><sup>235</sup><sub>92</sub>U + <sup>1</sup><sub>0</sub>n &rarr; <sup>140</sup><sub>56</sub>Ba + X + 3<sup>1</sup><sub>0</sub>n</p>
+                            <button class="reveal-btn" onclick="toggleAnswer(this)">Cevabi Goster</button>
+                            <div class="answer hidden">
+                                <p><strong>C:</strong> Kutle numarasi korunur:</p>
+                                <p>235 + 1 = 140 + A + 3(1)</p>
+                                <p>236 = 140 + A + 3 &rarr; <strong>A = 93</strong></p>
+                                <p>Atom numarasi korunur:</p>
+                                <p>92 + 0 = 56 + Z + 3(0)</p>
+                                <p>92 = 56 + Z &rarr; <strong>Z = 36</strong></p>
+                                <p>X = <sup>93</sup><sub>36</sub>Kr (Kripton)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mark-done-btn" onclick="markTopicDone(3)">
+                        <span id="done-check-3"></span> Bu konuyu calistim
+                    </button>
+                </div>
+
+                <!-- KONU 5: Radyasyonun Canlilara Etkileri -->
+                <div class="topic-content" id="topic-4">
+                    <div class="topic-header">
+                        <h2>Radyasyonun Canlilar Uzerindeki Etkileri</h2>
+                        <span class="badge">1 Soru</span>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Temel Kavram</h3>
+                        <p>Radyasyon, <strong>enerji tasiyan parcacik veya dalgalarin</strong> yayilmasidir. Canlilar uzerindeki etkisi, radyasyonun <strong>iyonlastirici</strong> olup olmadigina baglidir.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Radyasyon Turleri</h3>
+                        <div class="comparison-table">
+                            <div class="comparison-col">
+                                <h4 class="col-title danger">Iyonlastirici Radyasyon</h4>
+                                <ul>
+                                    <li>Atomlardan <strong>elektron koparabilecek</strong> kadar yuksek enerjiye sahiptir</li>
+                                    <li>DNA'ya zarar verebilir</li>
+                                    <li>Ornekler: Alfa (&alpha;), Beta (&beta;), Gama (&gamma;), X-isini</li>
+                                    <li>Hucre olumune veya mutasyona neden olabilir</li>
+                                </ul>
+                            </div>
+                            <div class="comparison-col">
+                                <h4 class="col-title safe">Iyonlastirici Olmayan Radyasyon</h4>
+                                <ul>
+                                    <li>Atomlardan elektron <strong>koparamaz</strong></li>
+                                    <li>Dusuk enerjili elektromanyetik dalgalardir</li>
+                                    <li>Ornekler: Radyo dalgalari, mikrodalga, kizilotesi, gorunur isik</li>
+                                    <li>Genellikle zararli degildir (yogun maruziyette isinma etkisi)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Biyolojik Etkiler</h3>
+                        <div class="effect-list">
+                            <div class="effect-item">
+                                <div class="effect-severity high">Yuksek Doz</div>
+                                <div>
+                                    <strong>Akut Radyasyon Sendromu</strong>
+                                    <p>Bulanti, kusma, hucre olumleri, organ yetmezligi. Cok yuksek dozlarda olum.</p>
+                                </div>
+                            </div>
+                            <div class="effect-item">
+                                <div class="effect-severity medium">Orta Doz</div>
+                                <div>
+                                    <strong>Hucre Hasari</strong>
+                                    <p>DNA mutasyonlari, kanser riski artisi, ureme hucreleri hasari.</p>
+                                </div>
+                            </div>
+                            <div class="effect-item">
+                                <div class="effect-severity low">Dusuk Doz</div>
+                                <div>
+                                    <strong>Onarilabilir Hasar</strong>
+                                    <p>Hucre onarim mekanizmalari devreye girer. Uzun vadede kumulatif etki olabilir.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Radyasyondan Korunma Yontemleri</h3>
+                        <div class="protection-grid">
+                            <div class="protection-item">
+                                <div class="protection-icon">&#128207;</div>
+                                <h4>Zaman</h4>
+                                <p>Radyasyona maruz kalma suresini <strong>minimumda</strong> tut</p>
+                            </div>
+                            <div class="protection-item">
+                                <div class="protection-icon">&#8596;</div>
+                                <h4>Mesafe</h4>
+                                <p>Kaynaktan <strong>uzaklas</strong>. Etki mesafenin karesiyle azalir</p>
+                            </div>
+                            <div class="protection-item">
+                                <div class="protection-icon">&#128737;</div>
+                                <h4>Zirhlama</h4>
+                                <p>&alpha;: kagit | &beta;: aluminyum | &gamma;: kursun/beton</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Radyasyonun Faydalari</h3>
+                        <div class="benefit-list">
+                            <div class="benefit-item">
+                                <strong>Tip:</strong> Kanser tedavisi (radyoterapi), goruntuleme (X-isini, PET, MR)
+                            </div>
+                            <div class="benefit-item">
+                                <strong>Endustri:</strong> Malzeme testi, kalinlik olcumu, sterilizasyon
+                            </div>
+                            <div class="benefit-item">
+                                <strong>Tarim:</strong> Mutasyon islahi (yeni bitki cesitleri), zararlilarin kontrol edilmesi
+                            </div>
+                            <div class="benefit-item">
+                                <strong>Enerji:</strong> Nukleer enerji uretimi (nukleer santraller)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Dozimetri Birimleri</h3>
+                        <div class="table-wrapper">
+                            <table class="summary-table">
+                                <thead>
+                                    <tr>
+                                        <th>Birim</th>
+                                        <th>Olcer</th>
+                                        <th>Aciklama</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Gray (Gy)</strong></td>
+                                        <td>Sogurulan doz</td>
+                                        <td>1 Gy = 1 J/kg (maddeye aktarilan enerji)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sievert (Sv)</strong></td>
+                                        <td>Esdeger doz</td>
+                                        <td>Biyolojik etkiyi olcer (radyasyon turune gore agirlikli)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Ornek Soru</h3>
+                        <div class="question-card">
+                            <p class="question-text"><strong>S:</strong> Iyonlastirici radyasyon ile iyonlastirici olmayan radyasyon arasindaki temel fark nedir? Birer ornek veriniz.</p>
+                            <button class="reveal-btn" onclick="toggleAnswer(this)">Cevabi Goster</button>
+                            <div class="answer hidden">
+                                <p><strong>C:</strong> Iyonlastirici radyasyon, atomlardan <strong>elektron koparabilecek</strong> kadar yuksek enerjiye sahiptir ve canli dokulara zarar verebilir. Ornek: Gama isinlari (&gamma;)</p>
+                                <p>Iyonlastirici olmayan radyasyon ise atomlardan elektron <strong>koparamaz</strong>, dusuk enerjili elektromanyetik dalgalardir. Ornek: Radyo dalgalari</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mark-done-btn" onclick="markTopicDone(4)">
+                        <span id="done-check-4"></span> Bu konuyu calistim
+                    </button>
+                </div>
+            </section>
+
+            <!-- FLASH KART TAB -->
+            <section id="tab-flashkart" class="tab-content">
+                <div class="flash-controls">
+                    <select id="flashTopicSelect" onchange="loadFlashCards()">
+                        <option value="all">Tum Konular (Karisik)</option>
+                        <option value="0">Uyarilma Yollari</option>
+                        <option value="1">Atom Alti Parcaciklar</option>
+                        <option value="2">Radyoaktif Bozunma</option>
+                        <option value="3">Fisyon & Fuzyon</option>
+                        <option value="4">Radyasyon Etkileri</option>
+                    </select>
+                    <div class="flash-progress">
+                        <span id="flashCounter">0/0</span>
+                    </div>
+                </div>
+                <div class="flash-card-container">
+                    <div class="flash-card" id="flashCard" onclick="flipCard()">
+                        <div class="flash-card-inner" id="flashCardInner">
+                            <div class="flash-card-front">
+                                <div class="flash-topic-label" id="flashTopicLabel"></div>
+                                <p id="flashQuestion"></p>
+                                <span class="flip-hint">Cevap icin tikla</span>
+                            </div>
+                            <div class="flash-card-back">
+                                <p id="flashAnswer"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flash-actions">
+                    <button class="flash-btn wrong" onclick="flashResult(false)">
+                        &#10007; Bilmedim
+                    </button>
+                    <button class="flash-btn correct" onclick="flashResult(true)">
+                        &#10003; Bildim
+                    </button>
+                </div>
+                <div class="flash-score" id="flashScore">
+                    <span class="score-correct" id="scoreCorrect">0</span> dogru /
+                    <span class="score-wrong" id="scoreWrong">0</span> yanlis
+                </div>
+            </section>
+
+            <!-- QUIZ TAB -->
+            <section id="tab-quiz" class="tab-content">
+                <div class="quiz-container" id="quizContainer">
+                    <div class="quiz-start" id="quizStart">
+                        <h2>Kendini Test Et!</h2>
+                        <p>5 konudan toplam 15 soru. Her soruya 4 secenek. Sureni olcebilirsin.</p>
+                        <button class="start-quiz-btn" onclick="startQuiz()">Sinava Basla</button>
+                    </div>
+                    <div class="quiz-active hidden" id="quizActive">
+                        <div class="quiz-header-bar">
+                            <span class="quiz-progress-text" id="quizProgressText">Soru 1/15</span>
+                            <span class="quiz-timer" id="quizTimer">00:00</span>
+                        </div>
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                        </div>
+                        <div class="quiz-question-card">
+                            <p class="quiz-question-text" id="quizQuestionText"></p>
+                            <div class="quiz-options" id="quizOptions"></div>
+                        </div>
+                        <button class="quiz-next-btn hidden" id="quizNextBtn" onclick="nextQuizQuestion()">Sonraki Soru &rarr;</button>
+                    </div>
+                    <div class="quiz-result hidden" id="quizResult">
+                        <h2 id="quizResultTitle"></h2>
+                        <div class="quiz-score-circle" id="quizScoreCircle">
+                            <span id="quizScoreText"></span>
+                        </div>
+                        <p id="quizResultMessage"></p>
+                        <div class="quiz-stats">
+                            <div class="quiz-stat">
+                                <span class="stat-number" id="quizCorrectCount">0</span>
+                                <span class="stat-label">Dogru</span>
+                            </div>
+                            <div class="quiz-stat">
+                                <span class="stat-number" id="quizWrongCount">0</span>
+                                <span class="stat-label">Yanlis</span>
+                            </div>
+                            <div class="quiz-stat">
+                                <span class="stat-number" id="quizTimeSpent">0:00</span>
+                                <span class="stat-label">Sure</span>
+                            </div>
+                        </div>
+                        <button class="start-quiz-btn" onclick="startQuiz()">Tekrar Dene</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>Fizik Sinav Calismasi &copy; 2026 | Basarilar!</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
