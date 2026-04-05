@@ -1,9 +1,9 @@
-const CACHE_NAME = 'fizik-sinav-v2';
+const CACHE_NAME = 'fizik-sinav-v3';
 const ASSETS = [
     './',
     './index.html',
-    './style.css',
-    './app.js',
+    './style.css?v=2',
+    './app.js?v=2',
     './manifest.json',
     './icons/icon-192.png',
     './icons/icon-512.png'
