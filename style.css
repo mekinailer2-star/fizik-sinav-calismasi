@@ -17,7 +17,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 
 #app{max-width:800px;margin:0 auto;padding-bottom:80px}
 
-.app-header{background:var(--bg2);padding:20px 16px;border-bottom:1px solid var(--bg4);position:sticky;top:0;z-index:100}
+.app-header{background:var(--bg2);padding:20px 16px;border-bottom:1px solid var(--bg4)}
 .header-content{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo-area{display:flex;align-items:center;gap:12px}
 .atom-icon svg{animation:spin 8s linear infinite}
@@ -30,7 +30,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 .progress-ring svg{transform:rotate(-90deg)}
 .progress-ring circle{transition:var(--transition)}
 
-.tab-nav{display:flex;gap:4px;padding:8px 12px;background:var(--bg);position:sticky;top:76px;z-index:90;border-bottom:1px solid var(--bg4)}
+.tab-nav{display:flex;gap:4px;padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--bg4)}
 .tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border:none;background:transparent;color:var(--text2);font-size:.75rem;font-weight:600;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition)}
 .tab-btn.active{background:var(--accent-glow);color:var(--accent)}
 .tab-btn:hover{background:var(--bg3)}
